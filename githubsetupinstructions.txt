@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Step 1: Generate an SSH Key
+# Change "your_email@example.com" to your actual email address
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f ~/.ssh/id_rsa -N ""
+
+# Step 2: Add SSH Key to GitHub
+# Display the public key and copy it to your clipboard
+echo "Copy the following SSH public key and add it to your GitHub account:"
+cat ~/.ssh/id_rsa.pub
+
+# Instructions for adding the SSH key to GitHub
+echo ""
+echo "Instructions to add the SSH key to GitHub:"
+echo "1. Go to GitHub and log in to your account."
+echo "2. In the upper-right corner, click on your profile photo, then click on 'Settings'."
+echo "3. In the left sidebar, click on 'SSH and GPG keys'."
+echo "4. Click the 'New SSH key' button."
+echo "5. In the 'Title' field, add a descriptive label for the new key (e.g., 'My Laptop SSH Key')."
+echo "6. Paste your SSH key into the 'Key' field (you can use Ctrl+V or right-click and select 'Paste')."
+echo "7. Click the 'Add SSH key' button to save your new key."
+echo "8. If prompted, confirm your GitHub password."
+
+# Step 3: Update Git Remote URL to Use SSH
+# Change USERNAME and REPOSITORY to your GitHub username and repository name
+git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+
+# Step 4: Push to GitHub Using SSH
+# This will push your changes to the master branch
+git push -u origin master
+
+echo "SSH setup complete! You should no longer be prompted for a password."
